@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<title>rock paper scissors</title>
+<body class="body">
+<button class="butto jsrock"
+><img src="Pictures/rock-emoji.png" width="50px"><br/>rock</button>
+<button 
+
+ class="butto jspaper"
+><img src="Pictures/paper-emoji.png" width="50px"><br/>paper</button>
+<button class="butto jsscissors"
+><img src="Pictures/scissors-emoji.png" width="50px"><br/>scissors</button>
+
+
+<button onclick="autoplay()" style="margin-left: 50px; padding: 8px;"  class="buttonn">Autoplay</button>
+<button  onclick="
+document.querySelector('.parag').innerHTML=`wins ${scores.wins=0} losses ${scores.losses=0} ties ${scores.ties=0}`
+
+"  style="margin-left: 10px; padding: 8px;" >Reset button</button>
+
+<p class="parag1"></p>
+<p class="parag2"></p>
+<p class="parag3"></p>
+<p class="parag"></p>
+
+
+
+
+
+
+
+<script>
+    document.querySelector('.jsrock').addEventListener('click',()=>{
+        playermove('rock')
+    })
+    document.querySelector('.jspaper').addEventListener('click',()=>{
+        playermove('paper')
+    })
+      document.querySelector('.jsscissors').addEventListener('click',()=>{
+        playermove('scissors')
+    })
+
+
+
+
+
+
+
+
+
+document.querySelector('body').addEventListener('keydown',()=>{
+    if(event.key==='r'){
+        playermove('rock')
+    }
+    else if(event.key==='p'){playermove('paper')}
+    else if(event.key==='s'){playermove('scissors')}
+})
+
+
+
+let computermove=''
+let result =''
+  
+
+
+
+
+
+function computerrandommove(){
+    
+const randomnumber = Math.random()
+
+if (randomnumber >=0 && randomnumber <1/3){computermove='rock'}
+else if (randomnumber >=1/3  && randomnumber <=2/3 ){computermove='paper'}else if (randomnumber >2/3  && randomnumber <=1 ){computermove='scissors'}
+
+
+}
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+                                                                                                            let scores ={
+                                                                                                                wins: 0,
+                                                                                                                losses:0,
+                                                                                                                ties:0
+                                                                                                            }
+
+let autoplaying=false
+let interid
+function autoplay(){ if (!autoplaying) {
+    
+    
+  interid=  setInterval(function(){
+    computerrandommove() 
+ let play=computermove;
+playermove(play)
+},1000);autoplaying=true,document.querySelector('.buttonn').innerHTML=`stop`}else{clearInterval(interid);
+autoplaying=false,document.querySelector('.buttonn').innerHTML=`autoplay`
+}
+}                                                                                        
+
+
+
+
+function playermove (play){
+if (play==='rock'){
+    computerrandommove()
+
+if(computermove==='rock'){result='tie'}
+else if (computermove==='paper'){result='you lose'}
+else if (computermove==='scissors'){result='you win'}
+
+if (result==='you win'){scores.wins=scores.wins+1}
+else if (result==='you lose'){scores.losses=scores.losses+1}
+else if(result==='tie'){scores.ties=scores.ties+1}
+document.querySelector('.parag').innerHTML=`wins ${scores.wins} losses ${scores.losses} ties ${scores.ties}`
+document.querySelector('.parag1').innerHTML=`you picked <img src="Pictures/${play}-emoji.png" width="50px">`
+document.querySelector('.parag2').innerHTML=`computer picked <img src="Pictures/${computermove}-emoji.png" width="50px">`
+document.querySelector('.parag3').innerHTML=`result ${result}`
+}
+
+
+
+
+
+
+
+
+
+else if(play==='scissors'){computerrandommove()
+
+
+    if(computermove==='scissors'){result='tie'}
+else if (computermove==='rock'){result='you lose'}
+else if (computermove==='paper'){result='you win'}
+
+if (result==='you win'){scores.wins=scores.wins+1}
+else if (result==='you lose'){scores.losses=scores.losses+1}
+else if(result==='tie'){scores.ties=scores.ties+1}
+document.querySelector('.parag').innerHTML=`wins ${scores.wins} losses ${scores.losses} ties ${scores.ties}`
+document.querySelector('.parag1').innerHTML=`you picked  <img src="Pictures/${play}-emoji.png" width="50px">`
+document.querySelector('.parag2').innerHTML=`computer picked  <img src="Pictures/${computermove}-emoji.png" width="50px">`
+document.querySelector('.parag3').innerHTML=`result ${result}`
+
+}
+
+else if(play==='paper'){
+    computerrandommove()
+
+
+
+    if(computermove==='paper'){result='tie'}
+else if (computermove==='scissors'){result='you lose'}
+else if (computermove==='rock'){result='you win'}
+
+if (result==='you win'){scores.wins=scores.wins+1}
+else if (result==='you lose'){scores.losses=scores.losses+1}
+else if(result==='tie'){scores.ties=scores.ties+1}
+document.querySelector('.parag').innerHTML=`wins ${scores.wins} losses ${scores.losses} ties ${scores.ties}`
+document.querySelector('.parag1').innerHTML=`you picked <img src="Pictures/${play}-emoji.png" width="50px"> `
+document.querySelector('.parag2').innerHTML=`computer picked <img src="Pictures/${computermove}-emoji.png" width="50px">`
+document.querySelector('.parag3').innerHTML=`result ${result}`
+}
+}
+
+
+
+
+
+
+
+
+</script>
+<style>
+    .butto{border-radius: 150px; width: 150px;height: 150px; margin-left: 30px; background-color: black; color: white; border-color: white;}
+    body{background-color: black; color: white;}
+
+
+
+</style>
+</body>
+</html>
